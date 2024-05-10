@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="style.css">
+
+<head>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form id="myForm">
+        <h2 id="headform">Form Validation</h2>
+
+        <label for="firstName">First Name:</label><br>
+        <input type="text" id="firstName" name="firstName" title="Enter your firstName"><br>
+        <span id="firstNameError" class="error"></span><br>
+
+        <label for="lastName">Last Name:</label><br>
+        <input type="text" id="lastName" name="lastName" title="Enter your lastName"><br>
+        <!-- <input type="text" id="lastName" name="lastName" title="Enter your lastName" required> -->
+        <span id="lastnameError" class="error"></span><br>
+
+
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" title="Age must be geaterthan or equals to 18 or lessthan 151"><br>
+        <span id="ageError" class="error"></span>
+        <br>
+
+        <label for="notificationEmails">Notification Emails (comma-separated):</label><br>
+        <input type="text" id="notificationEmails" name="notificationEmails"
+            title="notificationEmails must be comma-separated"><br>
+        <span id="notificationEmailsError" class="error"></span>
+        <br>
+
+        <!-- <div style="height: 70px; border: 5px solid black;"> -->
+        <label for="password">Password:</label><br>
+        <input  type="password" id="password" name="password"
+            title="Password must have both uppercase and lowercase Characters and a number in it">
+        <span id="eye1" class="eye-icon"> &#128065;</span><br> <!--eye icon-->
+        <span id="passwordError" class="error"></span> <br>
+
+        <!-- </div> -->
+
+        <label for="confirmPassword">Confirm Password:</label><br>
+        <input  type="password" id="confirmPassword" name="confirmPassword"
+            title="ConfirmPassword must be same as Password">
+        <span id="eye2" class="eye-icon"> &#128065;</span><br> <!--eye icon-->
+        <span id="confirmPasswordError" class="error"></span><br>
+
+        <label for="contactNumber">Contact Number:</label><br>
+        <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{11}"
+            title="Enter a 11-digit phone number"><br>
+        <span id="contactNumberError" class="error"></span><br>
+        
+        <!--characters must be 0 to 9 and not more than 11 are allowed-->
+
+        <input type="submit" value="Submit" id="submitButton">
+    </form>
+
+    <script>
+        const form = document.getElementById("myForm");
+        const submitButton = document.getElementById("submitButton");
+
+        form.addEventListener("input", validateForm);
+
+        function validateForm() {
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const age = parseInt(document.getElementById("age").value);
+            const notificationEmails = document.getElementById("notificationEmails").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const contactNumber = document.getElementById("contactNumber").value;
+
+            const emailList = notificationEmails.split(",");     //So, to clarify, split() is used to split a string into an array in JavaScript, and you provide the delimiter as an argument to the function.
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            const isFormValid = (             //IIFE the function written in () will evoked automatically
+                password.length >= 8 &&
+                /[a-z]/.test(password) &&
+                /[A-Z]/.test(password) &&
+                /\d/.test(password) &&
+                password === confirmPassword &&
+                age >= 18 && age <= 150 &&
+                contactNumber.length == 11 &&     // ab 2 == ki wajah se hum special characters upto 11 digit use kr skte lekin agr 3 === hotay tb humain exactly 0 to 9 tk ma se hi input deni prti 
+                emailList.every(email => emailRegex.test(email.trim()))   //.every is a higher order function is k ander bhi aik function bnana prta ha aur ye tb tk true nhi hota jb tk sari values true na hojayein
+            );             //email is the name of function()
+
+
+        }
+
+        // adding eye functionality
+        const passwordInput = document.getElementById("password");  //is variable k ander text box aagya and secondly .value nhi likha end pr agr wo likhtay tau value assign ho jati variable ko ab element assign hua ha 
+        const ConfirmPassword = document.getElementById("confirmPassword");  //is variable k ander text box aagya
+        const eye1 = document.getElementById("eye1");    //is variable k ander eye icon wala span aagya
+        const eye2 = document.getElementById("eye2");    //is variable k ander eye icon wala span aagya
+
+        eye1.addEventListener("click", function () {
+            if (passwordInput.type === "password") {  // agr password type ha tau usko text bna dega 
+                passwordInput.type = "text";
+                // eye1.innerHTML = "&#128064;"; // Show closed eye icon
+            }
+            else {
+                passwordInput.type = "password"; //agr pehle se hi password type ho tau agli line ki wajah se eye icon aankh bnd wala hi ayega 
+                // eye1.innerHTML = "&#128065;"; // Show open eye icon
+            }
+        });
+
+        // confirm password eye scene //
+        eye2.addEventListener("click", function () {
+            if (ConfirmPassword.type === "password") {  // agr password type ha tau usko text bna dega 
+                ConfirmPassword.type = "text";
+                // eye1.innerHTML = "&#128064;"; // Show closed eye icon
+            }
+            else {
+                ConfirmPassword.type = "password"; //agr pehle se hi password type ho tau agli line ki wajah se eye icon aankh bnd wala hi ayega 
+                // eye1.innerHTML = "&#128065;"; // Show open eye icon
+            }
+        });
+
+
+        // error messages functionality //
+        var firstName1 = document.getElementById("firstName");  // .value se agr idher hi value save krdi tau wo submit se pehle wali value jo k khali thi usi ko evaluate kre ga isi liye value validation fn ma likho ta k submission pr us fn k call hone se value check hojaye
+        var lastName1 = document.getElementById("lastName");
+        var age1 = document.getElementById("age");
+        var notificationEmails1 = document.getElementById("notificationEmails");
+        var password1 = document.getElementById("password");
+        var confirmPassword1 = document.getElementById("confirmPassword");
+        // const emailField = document.getElementById("email");
+        var contactNumber1 = document.getElementById("contactNumber");
+
+        /*Common properties of the event object include:
+      event.target: The element that triggered the event (in this case, the form element).
+      event.type: The type of the event ("submit" in this case).
+      event.preventDefault(): A method to prevent the default behavior of the event (e.g., preventing the form from actually submitting in this context).
+      And many more properties and methods depending on the type of event.*/
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            console.log("working");
+            let isValid = true;
+
+            if (firstName1.value.trim() === "") {
+                // console.log(firstName1)
+                document.getElementById("firstNameError").textContent = "firstName is required";
+                firstName1.style.borderColor = "red";
+                isValid = false;
+            }
+            else {
+                document.getElementById("firstNameError").textContent = " ";
+                firstName1.style.borderColor = "green";
+                firstName1.style.borderWidth = "3px";
+            }
+
+            if (lastName1.value.trim() === "") {
+                document.getElementById("lastnameError").textContent = "last Name is required";
+                lastName1.style.borderColor = "red";
+                isValid = false;
+            }
+            else {
+                document.getElementById("lastnameError").textContent = " ";
+                lastName1.style.borderColor = "green";
+                lastName1.style.borderWidth = "3px";
+            }
+
+            if (age1.value < 18 || age1.value > 150) {
+                document.getElementById("ageError").textContent = "You are not eligible";
+                age1.style.borderColor = "red";
+                isValid = false;
+            }
+            else {
+                document.getElementById("ageError").textContent = " "
+                age1.style.borderColor = "green";
+                age1.style.borderWidth = "3px";
+            }
+
+            if (notificationEmails1.value.trim() === "") {
+                document.getElementById("notificationEmailsError").textContent = "notification emails are required";
+                notificationEmails1.style.borderColor = "red";
+                isValid = false;
+            }
+            else if (!validateEmail(notificationEmails1.value)) {
+                document.getElementById("notificationEmailsError").textContent = "Invalid email format";
+                notificationEmails1.style.borderColor = "red";
+                isValid = false;
+            } else {
+                document.getElementById("notificationEmailsError").textContent = " ";
+                notificationEmails1.style.borderColor = "green";
+                notificationEmails1.style.borderWidth = "3px";
+            }
+
+            if (password.value.trim() === "") {
+                document.getElementById("passwordError").textContent = "Enter password";
+                password1.style.borderColor = "red";
+                isValid = false;
+            }
+            else if (password1.length <= 8 && !/[a-z]/.test(password1) && !/[A-Z]/.test(password1)) {
+                document.getElementById("passwordError").textContent = "Password is not in correct format";
+                password1.style.borderColor = "red";
+                isValid = false;
+            }
+            else {
+                document.getElementById("passwordError").textContent = "";
+                password1.style.borderColor = "green";
+                password1.style.borderWidth = "3px";
+            }
+
+            if (confirmPassword1.value.trim() === "") {
+                document.getElementById("confirmPasswordError").textContent = "confirmPassword field is empty";
+                confirmPassword1.style.borderColor = "red";
+                isValid = false;
+            }
+            else if (confirmPassword1.value !== password.value) {
+                document.getElementById("confirmPasswordError").textContent = "Make sure confirm password field must equals to password";
+                confirmPassword1.style.borderColor = "red";
+                isValid = false;
+            }
+            else {
+                document.getElementById("confirmPasswordError").textContent = "";
+                confirmPassword1.style.borderColor = "green";
+                confirmPassword1.style.borderWidth = "3px";
+            }
+
+            if (contactNumber1.value.trim() === "") {
+                document.getElementById("contactNumberError").textContent = "Enter Contact Number";
+                contactNumber1.style.borderColor = "red";
+                isValid = false;
+            }
+            else if (contactNumber1.length > 11) {
+                document.getElementById("contactNumberError").textContent = "Contact Number is not in correct format";
+                contactNumber1.style.borderColor = "red";
+                isValid = false;
+            }
+            else {
+                document.getElementById("contactNumberError").textContent = "";
+                contactNumber1.style.borderColor = "green";
+                contactNumber1.style.borderWidth = "3px";
+            }
+
+            if (isValid) {
+                form.submit();
+            }
+        });
+
+        function validateEmail(emails) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emails.split(",").every(email => emailRegex.test(email))
+        }
+
+
+    </script>
+
+</body>
+
+</html>

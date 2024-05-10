@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;   /*poora doc hi centeralize hogya */
+  }
+  
+  h1 {
+    background-color: #081b31;
+    color: #fff;
+    height: 5rem;
+    line-height: 5rem;   /* a trick jis ki help se text centralize hojata line k height l lehaz se*/
+  }
+  
+  .choice {
+    height: 165px;
+    width: 165px;
+    border-radius: 50%;
+    display: flex;      /*ye flex is liye bnaya ta k hover krne pr image ka size background color se chota bara na ho bulky border bn jaye image ka */
+    justify-content: center;
+    align-items: center;
+  }
+  
+   .choice:hover {
+    cursor: pointer;   /* opacity wala effect aajayega isse*/ 
+    background-color: #081b31;
+  } 
+  
+  img {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;   /* jb image ko height and width dete tau image kharab hojata ie shrink or streched hojata but is property se wo masla solve hojayega*/
+    border-radius: 50%;
+  }
+  
+  .choices {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;      /* gap between images */
+    margin-top: 5rem;
+  }
+  
+  .score-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    margin-top: 3rem;
+    gap: 5rem;
+  }
+  
+  #user-score,
+  #comp-score {
+    font-size: 4rem;
+  }
+  
+  .msg-container {
+    margin-top: 5rem;
+  }
+  
+  #msg {
+    background-color: #081b31;
+    color: #fff;
+    font-size: 2rem;
+    display: inline;  /* isse hamara bg color bus text pr ayega poore para ki width pr nhi ayega*/
+    padding: 1rem;
+    border-radius: 1rem;
+  }

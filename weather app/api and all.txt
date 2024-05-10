@@ -1,0 +1,57 @@
+api.openweathermap.org/data/2.5/weather?q=pune&appid=d965dcd3539d25f661d3f39dde0cce3f
+
+now after typing name of city and your key you get the data
+
+
+
+
+
+got to extensions
+
+
+search json formatter
+
+tarra
+
+simply copied from font awesome and pasted
+
+
+
+
+
+
+
+
+
+font awesome cdnjs --> ab icons show bhi tau krwani 
+na font awesome wali
+ 
+select 5.10 --> bcz its most stable 
+
+copy 
+
+
+Overflow hidden in box class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

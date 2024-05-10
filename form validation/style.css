@@ -1,0 +1,117 @@
+*{
+    margin:0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: antiquewhite; */
+    /* background-image: url(image2.jpg); */
+    background: linear-gradient(15deg,#f5e6ab 50%, #72aee6 50%);
+}
+#headform{
+    position: relative;
+    left: 16%;
+    color: #2BB34D;
+    
+    /* top: 15%;
+    left: 39.4%;
+    font-family: bebas Neue;
+    font-size: 36px; */
+    /* background-image: url(img1.lVXjWwlHyIo4QdjnC1YE); */
+    
+
+}
+#submitButton{
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: lightcyan;
+    border-radius: 5px;
+}
+#myForm{
+    display: inline-block;
+}
+
+.eye-icon {
+    cursor: pointer;
+    font-size: 3vh;
+    /* user-select: none; */
+  }
+
+#firstName,#lastName,#age,#notificationEmails,#password,#contactNumber,#confirmPassword{
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+#eye1 {
+    display: inline-block;
+    position: relative;
+    left: -10%; /* Adjust the right position as needed */
+    top: 0vh; /* Adjust the top position as needed */
+  }
+
+  #eye2 {
+    display: inline-block;
+    position: relative;
+    right: 10.5%; /* Adjust the right position as needed */
+    bottom: 0vh; /* Adjust the top position as needed */
+  }
+
+/* #eye1{
+    /* display: inline-block; 
+    display: flex;
+    position: fixed;
+    right: 41%;
+    top: 61.5%;
+} */
+/*#eye2{
+    /* display: inline-block; 
+    position: absolute;
+    right: 41%;
+    top: 74%;
+}*/
+
+/* #eye1,#eye2 {
+    display: inline-block;
+    position: absolute;
+    right: 41%;
+} */
+
+h2::after{
+    content: "";
+    position: absolute;
+    /* right: 50px; */
+    left: 0;
+    bottom: 0;  /*bottom left corner se shuru kiya ha */
+    height: 3px;
+    width: 0%;
+    background-color: #ddd;
+    transition: width 1.5s;
+
+    /* animation: mymove 5s infinite;
+    animation-delay: 2s; */
+}
+h2:hover::after{
+    width: 60%;
+}
+
+h2,label{
+    line-height: 170%;
+}
+
+
+
+/* @keyframes mymove {
+    from {left: 0px;}
+    to {left: 0px;}
+    
+} */

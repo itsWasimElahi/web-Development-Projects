@@ -1,0 +1,4 @@
+pt- 5 --> padding top
+py- 5 --> padding top and bottom along y axis
+p-5 --> padding all sides
+there is also a class for responsive image and table

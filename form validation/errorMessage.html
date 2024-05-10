@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .error {
+        color: red;
+        font-size: 12px;
+    }
+</style>
+
+<body>
+    <form id="myForm">
+        <input type="text" id="username" placeholder="Username">
+        <span id="usernameError" class="error"></span>
+
+        <input type="email" id="email" placeholder="Email">
+        <span id="emailError" class="error"></span>
+
+        <!-- Other form fields -->
+
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+
+        const form = document.getElementById("myForm");
+        const usernameField = document.getElementById("username");
+        const emailField = document.getElementById("email");
+    
+        /*Common properties of the event object include:
+        event.target: The element that triggered the event (in this case, the form element).
+        event.type: The type of the event ("submit" in this case).
+        event.preventDefault(): A method to prevent the default behavior of the event (e.g., preventing the form from actually submitting in this context).
+        And many more properties and methods depending on the type of event.*/
+
+form.addEventListener("submit", function (event) {  // ye form pr laga hua ha event
+            event.preventDefault(); // Prevent the form from submitting
+
+            let isValid = true;
+
+            // Validate username
+            if (usernameField.value.trim() === "") {
+                document.getElementById("usernameError").textContent = "Username is required";
+                isValid = false;
+            } else {
+                document.getElementById("usernameError").textContent = "";
+            }
+
+            // Validate email
+            if (emailField.value.trim() === "") {
+                document.getElementById("emailError").textContent = "Email is required";
+                isValid = false;
+            } else if (!isValidEmail(emailField.value)) {
+                document.getElementById("emailError").textContent = "Invalid email format1";
+                isValid = false;
+            } else {
+                document.getElementById("emailError").textContent = "";
+            }
+            
+            // Other validations for different fields
+
+            if (isValid) {
+                // If all validations pass, you can submit the form or perform other actions
+                form.submit(); 
+            }
+        });
+
+        function isValidEmail(email) {
+            // Implement your email validation logic here
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+    </script>
+
+</body>
+
+</html>

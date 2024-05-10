@@ -1,0 +1,17 @@
+{
+  "name": "cls",
+  "version": "1.0.0",
+  "description": "creating a weather node js app",
+  "main": "index.js",
+  "scripts": {
+    "start" : "run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Waseem Elahi",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "requests": "^0.3.0"
+  },
+  "devDependencies": {}
+}
